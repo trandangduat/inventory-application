@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const WeaponInstanceSchema = new Schema({
-    weapon: {type: Schema.Types.ObjectId, ref: "Weapon"},
+const SkinInstanceSchema = new Schema({
+    skin: {type: Schema.Types.ObjectId, ref: "Skin"},
     wear_condition: {
         type: String,
         enum: ["Factory New", "Minimal Wear", "Field-Tested", "Well-Worn", "Battle-Scarred"],
@@ -12,10 +12,10 @@ const WeaponInstanceSchema = new Schema({
     price: {type: Number},
 });
 
-WeaponInstanceSchema.virtual("url").get(function() {
-    return `/weapon_instances/${this._id}`;
+SkinInstanceSchema.virtual("url").get(function() {
+    return `/skin_instance/${this._id}`;
 });
 
-module.exports = mongoose.model("WeaponInstance", WeaponInstanceSchema);
+module.exports = mongoose.model("SkinInstance", SkinInstanceSchema);
 
 

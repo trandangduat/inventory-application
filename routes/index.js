@@ -2,29 +2,29 @@ var express = require('express');
 var router = express.Router();
 
 const weapon_controller = require("../controllers/weapon_controller.js");
-const weapon_instance_controller = require("../controllers/weapon_instance_controller.js");
-const weapon_type_controller = require("../controllers/weapon_type_controller.js");
+const skin_controller = require("../controllers/skin_controller.js");
+const skin_instance_controller = require("../controllers/skin_instance_controller.js");
 
-// WEAPON TYPE ROUTES //
-router.get("/", weapon_type_controller.index);
+// skin TYPE ROUTES //
+router.get("/", skin_controller.index);
 
-// WEAPON ROUTES //
-router.get("/weapon", weapon_controller.index);
-router.get("/weapon/create", weapon_controller.weapon_create_get);
-router.get("/weapon/:id/delete", weapon_controller.weapon_delete_get);
-router.get("/weapon/:id/update", weapon_controller.weapon_update_get);
-router.post("/weapon/create", weapon_controller.weapon_create_post);
-router.post("/weapon/:id/delete", weapon_controller.weapon_delete_post);
-router.post("/weapon/:id/update", weapon_controller.weapon_update_post);
+// skin ROUTES //
+router.get("/skin", skin_controller.index);
+router.get("/skin/create", skin_controller.skin_create_get);
+router.get("/skin/:id/delete", skin_controller.skin_delete_get);
+router.get("/skin/:id/update", skin_controller.skin_update_get);
+router.post("/skin/create", skin_controller.skin_create_post);
+router.post("/skin/:id/delete", skin_controller.skin_delete_post);
+router.post("/skin/:id/update", skin_controller.skin_update_post);
 
-// WEAPON INSTANCE //
-router.get("/weapon_instances", weapon_instance_controller.index);
-router.get("/weapon_instance/create", weapon_instance_controller.weapon_instance_create_get);
-router.get("/weapon_instance/:id/delete", weapon_instance_controller.weapon_instance_delete_get);
-router.get("/weapon_instance/:id/update", weapon_instance_controller.weapon_instance_update_get);
-router.post("/weapon_instance/create", weapon_instance_controller.weapon_instance_create_post);
-router.post("/weapon_instance/:id/delete", weapon_instance_controller.weapon_instance_delete_post);
-router.post("/weapon_instance/:id/update", weapon_instance_controller.weapon_instance_update_post);
+// skin INSTANCE //
+router.get("/skin_instances", skin_instance_controller.index);
+router.get("/skin_instance/create", skin_instance_controller.skin_instance_create_get);
+router.get("/skin_instance/:id/delete", skin_instance_controller.skin_instance_delete_get);
+router.get("/skin_instance/:id/update", skin_instance_controller.skin_instance_update_get);
+router.post("/skin_instance/create", skin_instance_controller.skin_instance_create_post);
+router.post("/skin_instance/:id/delete", skin_instance_controller.skin_instance_delete_post);
+router.post("/skin_instance/:id/update", skin_instance_controller.skin_instance_update_post);
 
 
 module.exports = router;
