@@ -1,0 +1,14 @@
+extends ..\layout
+
+block content
+    if skinInstancesList.length
+        ul
+            each skinInstance in skinInstancesList 
+                li 
+                    p= skinInstance.name
+                    p= skinInstance.float
+                    p= skinInstance.wear_condition 
+                    p= skinInstance.price
+
+    else
+        p Empty list.

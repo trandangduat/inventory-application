@@ -1,8 +1,9 @@
 const Skin = require("../models/skin");
 const asyncHandler = require("express-async-handler");
 
-exports.index = asyncHandler(async (req, res, next) => {
-    res.send("skin LIST...")
+exports.skins_list = asyncHandler(async (req, res, next) => {
+    const skinsList = await Skin.find({ weapon: req.params.id }).exec();
+    res.render("skin/skinlist", { skinsList: skinsList });
 });
 
 exports.skin_create_get = asyncHandler(async (req, res, next) => {

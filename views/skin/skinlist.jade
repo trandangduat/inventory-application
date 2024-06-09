@@ -1,0 +1,10 @@
+extends ..\layout
+
+block content
+    if skinsList.length
+        ul
+            each skin in skinsList 
+                li 
+                    a(href= skin.url)= skin.name
+    else
+        p Empty list.
