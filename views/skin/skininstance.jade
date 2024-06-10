@@ -5,10 +5,10 @@ block content
         ul
             each skinInstance in skinInstancesList 
                 li 
-                    p= skinInstance.name
-                    p= skinInstance.float
-                    p= skinInstance.wear_condition 
-                    p= skinInstance.price
+                    p= skinInstance.skin.name
+                    p #[strong Float:] #{skinInstance.float}
+                    p #[strong Wear:] #{skinInstance.wear_condition}
+                    p #[strong Price:] #{skinInstance.price}
 
     else
         p Empty list.

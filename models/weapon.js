@@ -3,8 +3,6 @@ const Schema = mongoose.Schema;
 
 const WeaponSchema = new Schema({
     name: {type: String},
-    min_price: {type: Number},
-    max_price: {type: Number},
 });
 
 WeaponSchema.virtual("url").get(function() {

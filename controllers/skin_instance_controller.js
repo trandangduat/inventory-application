@@ -2,7 +2,7 @@ const SkinInstance = require("../models/skin_instance");
 const asyncHandler = require("express-async-handler");
 
 exports.skin_instances_list = asyncHandler(async (req, res, next) => {
-    const skinInstancesList = await SkinInstance.find({ skin: req.params.id }).exec();
+    const skinInstancesList = await SkinInstance.find({ skin: req.params.id }).populate("skin").exec();
     res.render("skin/skininstance", { skinInstancesList: skinInstancesList } );
 });
 
