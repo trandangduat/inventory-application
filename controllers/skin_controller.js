@@ -5,14 +5,14 @@ const { body, validationResult } = require("express-validator");
 
 exports.skins_list = asyncHandler(async (req, res, next) => {
     const skinsList = await Skin.find({ weapon: req.params.id }).exec();
-    res.render("skin/skinlist", { 
+    res.render("skin/list", { 
         skinsList: skinsList,
     });
 });
 
 exports.skin_create_get = asyncHandler(async (req, res, next) => {
     const weaponsList = await Weapon.find().exec();
-    res.render("skin/skincreateform", {
+    res.render("skin/create", {
         title: "Create a new skin",
         weaponsList: weaponsList,
     });

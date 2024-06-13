@@ -1,11 +1,14 @@
-extends ..\layout
+extends ../../layout
+
+block action_bar 
+    a(href= '/skin-instance/create') Add a new #{skinName} instance 
 
 block content
     if skinInstancesList.length
         ul
             each skinInstance in skinInstancesList 
                 li 
-                    p= skinInstance.skin.name
+                    p= skinName
                     p #[strong Float:] #{skinInstance.float}
                     p #[strong Wear:] #{skinInstance.wear_condition}
                     p #[strong Price:] #{skinInstance.price}
