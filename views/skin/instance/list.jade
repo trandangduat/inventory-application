@@ -1,7 +1,8 @@
 extends ../../layout
 
 block action_bar 
-    a(href= '/skin-instance/create') Add a new #{skinName} instance 
+    if (skinInstancesList.length)
+        a(href= '/skin_instance/create') Add a new #{skinName} instance 
 
 block content
     if skinInstancesList.length

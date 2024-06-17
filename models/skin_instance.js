@@ -6,7 +6,6 @@ const SkinInstanceSchema = new Schema({
     wear_condition: {
         type: String,
         enum: ["Factory New", "Minimal Wear", "Field-Tested", "Well-Worn", "Battle-Scarred"],
-        default: ":P",
     },
     float: {type: Number},
     price: {type: Number},
