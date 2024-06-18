@@ -10,10 +10,8 @@ router.get("/", weapon_controller.index);
 router.get("/weapon/:id", skin_controller.skins_list);
 
 // skin ROUTES //
-router.get("/skin/create", skin_controller.skin_create_get);
 router.get("/skin/:id/delete", skin_controller.skin_delete_get);
 router.get("/skin/:id/update", skin_controller.skin_update_get);
-router.post("/skin/create", skin_controller.skin_create_post);
 router.post("/skin/:id/delete", skin_controller.skin_delete_post);
 router.post("/skin/:id/update", skin_controller.skin_update_post);
 router.get("/skin/:id", skin_instance_controller.skin_instances_list);
