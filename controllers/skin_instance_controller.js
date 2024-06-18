@@ -71,13 +71,11 @@ exports.skin_instance_create_post = [
                 });
                 await newSkin.save();
             }
-            let float = req.body.float;
-            let wear = getWearConditionFromFloatValue(float);
             const newSkinInstance = new SkinInstance({
                 skin: (skinExisted ? skinExisted : newSkin),
                 float: req.body.float,
                 price: req.body.price,
-                wear_condition: wear,
+                wear_condition: getWearConditionFromFloatValue(req.body.float),
             });
             await newSkinInstance.save();
             res.redirect(newSkinInstance.url);
@@ -86,11 +84,20 @@ exports.skin_instance_create_post = [
 ];
 
 exports.skin_instance_delete_get = asyncHandler(async (req, res, next) => {
-    res.send("skin INSTANCE DELETE GET...");
+    const instance = await SkinInstance.findById(req.params.id).populate("skin").exec();
+    res.render("skin/instance/detail", {
+        instance: instance,
+        deleteConfirmation: true,
+    });
 });
 
 exports.skin_instance_delete_post = asyncHandler(async (req, res, next) => {
-    res.send("skin INSTANCE DELETE POST...");
+    const skinInstance = await SkinInstance.findById(req.params.id).exec();
+    const skin = await Skin.findById(skinInstance.skin).exec();
+    if (skinInstance) {
+        await skinInstance.deleteOne();
+        res.redirect(skin.url);
+    }
 });
 
 exports.skin_instance_update_get = asyncHandler(async (req, res, next) => {
@@ -99,4 +106,11 @@ exports.skin_instance_update_get = asyncHandler(async (req, res, next) => {
 
 exports.skin_instance_update_post = asyncHandler(async (req, res, next) => {
     res.send("skin INSTANCE UPDATE POST...");
+});
+
+exports.skin_instance_detail = asyncHandler(async (req, res, next) => {
+    const instance = await SkinInstance.findById(req.params.id).populate("skin").exec();
+    res.render("skin/instance/detail", {
+        instance: instance,
+    });
 });

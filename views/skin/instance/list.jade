@@ -2,7 +2,7 @@ extends ../../layout
 
 block action_bar 
     if (skinInstancesList.length)
-        a(href= '/skin_instance/create') Add a new #{skinName} instance 
+        a(href= '/skin_instance/create') Add a new instance 
 
 block content
     if skinInstancesList.length
@@ -13,6 +13,7 @@ block content
                     p #[strong Float:] #{skinInstance.float}
                     p #[strong Wear:] #{skinInstance.wear_condition}
                     p #[strong Price:] #{skinInstance.price}
+                    a(href= skinInstance.url) Details
 
     else
         p Empty list.

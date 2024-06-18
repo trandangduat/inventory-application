@@ -25,6 +25,7 @@ router.get("/skin_instance/:id/update", skin_instance_controller.skin_instance_u
 router.post("/skin_instance/create", skin_instance_controller.skin_instance_create_post);
 router.post("/skin_instance/:id/delete", skin_instance_controller.skin_instance_delete_post);
 router.post("/skin_instance/:id/update", skin_instance_controller.skin_instance_update_post);
+router.get("/skin_instance/:id", skin_instance_controller.skin_instance_detail);
 
 
 module.exports = router;

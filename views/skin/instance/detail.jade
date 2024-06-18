@@ -1,0 +1,12 @@
+extends ../../layout
+
+block content 
+    p= instance.skin.name 
+    p #[strong Float:] #{instance.float}
+    p #[strong Wear:] #{instance.wear_condition}
+    p #[strong Price:] #{instance.price}
+    a(href= instance.url + '/delete') Delete this skin
+    if (deleteConfirmation)
+        form(method= 'POST', action= '')
+            p Do you want to actually delete this skin?
+            button(type='submit') Yes 
