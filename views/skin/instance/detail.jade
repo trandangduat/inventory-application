@@ -6,7 +6,29 @@ block content
     p #[strong Wear:] #{instance.wear_condition}
     p #[strong Price:] #{instance.price}
     a(href= instance.url + '/delete') Delete this skin
+    br
+    a(href= instance.url + '/update') Edit this skin
     if (deleteConfirmation)
         form(method= 'POST', action= '')
             p Do you want to actually delete this skin?
             button(type='submit') Yes 
+    if (isEditing) 
+        h3 Editing skin
+        hr
+        form(method='POST', action='')
+            label(for='skin-name') Skin name:
+            input(type='text', name='skin-name', value=instance.skin.name placeholder='Enter skin name...')
+
+            label(for='float') Float:
+            input(type='number', step='any', name='float', value=instance.float, placeholder='Enter float...')
+            
+            label(for='price') Price: 
+            input(type='number', name='price',value=instance.price, placeholder='Skin price...')
+            
+            button(type='submit') Submit 
+            
+        if (errors)
+            ul
+                each err in errors
+                    li 
+                        p= err.msg

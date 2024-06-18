@@ -37,6 +37,21 @@ function getWearConditionFromFloatValue (float) {
     return wear;
 }
 
+async function addNewSkin (name, weapon) {
+    const skinExisted = await Skin.findOne({ name: name }) 
+                                    .collation({ locale: "en", strength: 2 })
+                                    .exec();
+    if (!skinExisted) {
+        newSkin = new Skin({
+            name: name,
+            weapon: weapon,
+        });
+        await newSkin.save();
+        return newSkin;
+    }
+    return skinExisted;
+}
+
 exports.skin_instance_create_post = [
     body("skin-name", "Name must not be empty!")
         .trim()
@@ -101,12 +116,46 @@ exports.skin_instance_delete_post = asyncHandler(async (req, res, next) => {
 });
 
 exports.skin_instance_update_get = asyncHandler(async (req, res, next) => {
-    res.send("skin INSTANCE UPDATE GET...");
+    const instance = await SkinInstance.findById(req.params.id).populate("skin").exec();
+    res.render("skin/instance/detail", {
+        instance: instance,
+        isEditing: true,
+    });
 });
 
-exports.skin_instance_update_post = asyncHandler(async (req, res, next) => {
-    res.send("skin INSTANCE UPDATE POST...");
-});
+exports.skin_instance_update_post = [
+    body("skin-name", "Name must not be empty!")
+        .trim()
+        .isLength({ min : 1 })
+        .escape(),
+    body("float", "Float value must range from 0 to 1")
+        .isFloat({ min: 0, max: 1 })
+        .escape(),
+    body("price", "Price must be a positive number")
+        .isFloat({ min: 0 })
+        .escape(),
+
+    asyncHandler(async (req, res, next) => {
+        const errors = validationResult(req);
+        const instance = await SkinInstance.findById(req.params.id).populate("skin").exec();
+        if (!errors.isEmpty()) {
+            res.render("skin/instance/detail", {
+                instance: instance,
+                isEditing: true,
+                errors: errors.array(),
+            });
+        }
+        else {
+            const skin = await addNewSkin(req.body["skin-name"], instance.skin.weapon);
+            instance.skin = skin._id;
+            instance.float = req.body.float;
+            instance.price = req.body.price;
+            instance.wear_condition = getWearConditionFromFloatValue(req.body.float);
+            await instance.save();
+            res.redirect(instance.url);
+        }
+    })
+];
 
 exports.skin_instance_detail = asyncHandler(async (req, res, next) => {
     const instance = await SkinInstance.findById(req.params.id).populate("skin").exec();

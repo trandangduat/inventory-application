@@ -17,11 +17,3 @@ exports.skin_delete_get = asyncHandler(async (req, res, next) => {
 exports.skin_delete_post = asyncHandler(async (req, res, next) => {
     res.send("skin DELETE POST...");
 });
-
-exports.skin_update_get = asyncHandler(async (req, res, next) => {
-    res.send("skin UPDATE GET...");
-});
-
-exports.skin_update_post = asyncHandler(async (req, res, next) => {
-    res.send("skin UPDATE POST...");
-});
