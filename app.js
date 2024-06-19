@@ -8,11 +8,13 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+require('dotenv').config()
 
 // Set up mongoose connection
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
-const mongoDB = "mongodb+srv://admin:admin@test0.bxbo6ox.mongodb.net/inventory_application?retryWrites=true&w=majority&appName=test0";
+const mongoDB = process.env.DATABASE_URL;
+console.log(process.env);
 
 main().catch((err) => console.log(err));
 async function main() {

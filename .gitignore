@@ -1,2 +1,6 @@
 node_modules
 database_connection_string.txt
+.dockerignore
+Dockerfile
+fly.toml
+.env
