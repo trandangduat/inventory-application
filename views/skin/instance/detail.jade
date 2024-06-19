@@ -5,27 +5,32 @@ block content
     p #[strong Float:] #{instance.float}
     p #[strong Wear:] #{instance.wear_condition}
     p #[strong Price:] #{instance.price}
-    a(href= instance.url + '/delete') Delete this skin
-    br
-    a(href= instance.url + '/update') Edit this skin
+    a(href= instance.url + '/delete', class='pure-button') Delete this skin
+    a(href= instance.url + '/update', class='pure-button') Edit this skin
+
     if (deleteConfirmation)
-        form(method= 'POST', action= '')
-            p Do you want to actually delete this skin?
-            button(type='submit') Yes 
+        form(method= 'POST', action= '', class='pure-form pure-form-aligned')
+            div(class='pure-control-group')
+                p Do you want to actually delete this skin?
+                button(type='submit', class='pure-button pure-button-primary') Yes 
+
     if (isEditing) 
         h3 Editing skin
-        hr
-        form(method='POST', action='')
-            label(for='skin-name') Skin name:
-            input(type='text', name='skin-name', value=instance.skin.name placeholder='Enter skin name...')
-
-            label(for='float') Float:
-            input(type='number', step='any', name='float', value=instance.float, placeholder='Enter float...')
+        form(method='POST', action='', class='pure-form pure-form-aligned')
+            div(class='pure-control-group')
+                label(for='skin-name') Skin name:
+                input(type='text', name='skin-name',value=instance.skin.name, placeholder='Enter skin name...')
             
-            label(for='price') Price: 
-            input(type='number', name='price',value=instance.price, placeholder='Skin price...')
+            div(class='pure-control-group')
+                label(for='float') Float:
+                input(type='number', step='any', name='float',value=instance.float, placeholder='Enter float...')
             
-            button(type='submit') Submit 
+            div(class='pure-control-group')
+                label(for='price') Price: 
+                input(type='number', name='price',value=instance.price, placeholder='Skin price...')
+            
+            div(class='pure-control-group')
+                button(type='submit', class='pure-button pure-button-primary') Submit 
             
         if (errors)
             ul

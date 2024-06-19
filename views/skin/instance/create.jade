@@ -2,22 +2,27 @@ extends ../../layout
 
 block content
     h1= title 
-    form(method='POST', action='')
-        label(for='skin-name') Skin name:
-        input(type='text', name='skin-name', placeholder='Enter skin name...')
+    form(method='POST', action='', class='pure-form pure-form-aligned')
+        div(class='pure-control-group')
+            label(for='skin-name') Skin name:
+            input(type='text', name='skin-name', placeholder='Enter skin name...')
         
-        label(for='weapon') Weapon: 
-        select(name='weapon-id')
-            each weapon in weaponsList
-                option(value= weapon.id) !{weapon.name}
+        div(class='pure-control-group')
+            label(for='weapon') Weapon: 
+            select(name='weapon-id')
+                each weapon in weaponsList
+                    option(value= weapon.id) !{weapon.name}
         
-        label(for='float') Float:
-        input(type='number', step='any', name='float', placeholder='Enter float...')
+        div(class='pure-control-group')
+            label(for='float') Float:
+            input(type='number', step='any', name='float', placeholder='Enter float...')
         
-        label(for='price') Price: 
-        input(type='number', name='price', placeholder='Skin price...')
+        div(class='pure-control-group')
+            label(for='price') Price: 
+            input(type='number', name='price', placeholder='Skin price...')
         
-        button(type='submit') Submit 
+        div(class='pure-control-group')
+            button(type='submit', class='pure-button pure-button-primary') Submit 
 
     if (errors)
         ul

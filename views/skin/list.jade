@@ -4,7 +4,7 @@ block content
     if skinsList.length
         ul
             each skin in skinsList 
-                li 
-                    a(href= skin.url)= skin.name
+                li
+                    a(href= skin.url, class='clean')= skin.name
     else
         p Empty list.

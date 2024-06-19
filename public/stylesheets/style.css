@@ -1,8 +1,59 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: flex-start;
 }
 
 a {
   color: #00B7FF;
+}
+
+a.clean {
+  text-decoration: none;
+  color: #777;
+}
+
+a.clean:hover {
+  color: #00B7FF;
+  transition: 0.2s;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.custom-restricted-width {
+  display: inline-block;
+  width: 20em;
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  background: #191818;
+}
+
+.content {
+  margin-left: 20em;
+  width: 80em;
+  padding: 0 1em;
+}
+
+ul#weapons-box {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.box > a {
+  display: block;
+  padding: 10px 0 10px 10px;
+  font-size: 1.2em;
+}
+
+.box > a:hover {
+  background: #0051ff1c;
 }

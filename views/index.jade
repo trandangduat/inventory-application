@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1 Weapons List 
-  ul 
+  ul(id='weapons-box')
     each weapon in weaponsList 
-      li 
-        a(href= weapon.url)= weapon.name
+      li(class='box')
+        a(href= weapon.url, class='clean')= weapon.name
